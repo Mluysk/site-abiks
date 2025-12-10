@@ -4,6 +4,7 @@
   --panel-2: #1d1a1f;
   --accent: #8f0b0b;
   --accent-2: #d13c3c;
+  --accent-3: #ff6b6b;
   --text: #f4f0ed;
   --muted: #c9c1c1;
   --border: rgba(209, 60, 60, 0.18);
@@ -68,11 +69,19 @@ header.scrolled {
 }
 
 .logo-mark {
-  width: 128px;
-  height: auto;
+  width: 160px;
+  height: 64px;
   display: block;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 10px 26px rgba(209, 60, 60, 0.22));
 }
+
+.logo-mark rect,
+.logo-mark path {
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.logo:hover .logo-mark rect { opacity: 0.22; }
+.logo:hover .logo-mark path { filter: drop-shadow(0 0 18px rgba(255, 107, 107, 0.35)); }
 
 .logo-text small {
   color: var(--muted);
@@ -380,13 +389,13 @@ header.scrolled {
 }
 
 .about-card {
-  background: radial-gradient(circle at 20% 20%, rgba(209, 60, 60, 0.12), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.04), transparent 35%),
-    linear-gradient(120deg, rgba(18, 13, 16, 0.95), rgba(9, 7, 9, 0.96));
-  border-radius: calc(var(--radius) + 6px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-  padding: 26px;
+  background: radial-gradient(circle at 22% 18%, rgba(255, 107, 107, 0.15), transparent 38%),
+    radial-gradient(circle at 76% 32%, rgba(209, 60, 60, 0.14), transparent 36%),
+    linear-gradient(140deg, rgba(18, 13, 16, 0.95), rgba(9, 7, 9, 0.98));
+  border-radius: calc(var(--radius) + 10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.48);
+  padding: 30px;
   position: relative;
   overflow: hidden;
 }
@@ -394,10 +403,11 @@ header.scrolled {
 .about-card::before {
   content: "";
   position: absolute;
-  inset: 12px;
+  inset: 14px;
   border-radius: var(--radius);
-  border: 1px dashed rgba(209, 60, 60, 0.2);
+  border: 1px dashed rgba(255, 107, 107, 0.32);
   pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .about-track {
@@ -405,7 +415,7 @@ header.scrolled {
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
   align-items: stretch;
 }
 
@@ -413,33 +423,30 @@ header.scrolled {
   grid-column: span 2;
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 12px;
-  padding: 12px 14px;
-  background: rgba(26, 22, 26, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  box-shadow: inset 0 0 0 1px rgba(209, 60, 60, 0.12);
+  gap: 14px;
+  padding: 14px 16px;
+  background: rgba(26, 22, 26, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px rgba(209, 60, 60, 0.16), 0 14px 32px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(4px);
 }
 
 .about-logo {
-  width: 46px;
-  height: 46px;
-  border-radius: 14px;
-  background: rgba(209, 60, 60, 0.12);
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 107, 107, 0.26), rgba(209, 60, 60, 0));
   border: 1px solid rgba(255, 255, 255, 0.08);
   display: grid;
   place-items: center;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 20px rgba(209, 60, 60, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 24px rgba(209, 60, 60, 0.22);
 }
 
-.about-logo img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
-}
+.brand-glyph { width: 42px; height: 42px; filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4)); }
 
-.about-copy h3 { margin-bottom: 6px; }
+.about-copy h3 { margin-bottom: 6px; font-size: 1.1rem; }
+
 
 .topic-divider {
   grid-column: span 1;
@@ -449,10 +456,7 @@ header.scrolled {
 }
 
 .topic-divider img {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 14px rgba(209, 60, 60, 0.35));
+  display: none;
 }
 
 .topic-divider::after {
@@ -463,6 +467,8 @@ header.scrolled {
   background: linear-gradient(to bottom, rgba(209, 60, 60, 0.32), rgba(255, 255, 255, 0.08), rgba(209, 60, 60, 0.22));
   border-radius: 999px;
 }
+
+.brand-pin { width: 52px; height: 52px; filter: drop-shadow(0 0 18px rgba(209, 60, 60, 0.34)); }
 
 .columns {
   display: grid;
