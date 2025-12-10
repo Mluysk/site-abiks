@@ -70,6 +70,7 @@ header.scrolled {
 .logo-text small {
   color: var(--muted);
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .logo .spark {
@@ -459,24 +460,6 @@ header.scrolled {
   font-size: 0.8rem;
   color: rgba(14, 243, 255, 0.45);
 }
-
-.testimonials {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--grid-gap);
-}
-
-.testimonial {
-  background: rgba(15, 28, 42, 0.9);
-  border-radius: var(--radius);
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: var(--shadow);
-  color: var(--muted);
-}
-
-.testimonial strong { color: var(--text); }
-.testimonial small { display: block; color: var(--accent); margin-bottom: 8px; }
 
 .contact-grid {
   display: grid;
