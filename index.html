@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABIKS | Automação e Engenharia</title>
+  <style>
+    :root {
+      --bg: #0a0f14;
+      --card: #0f1823;
+      --accent: #0ef3ff;
+      --accent-2: #18c47c;
+      --text: #e6f1ff;
+      --muted: #9fb1c9;
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+      --glow: 0 0 20px rgba(14, 243, 255, 0.45);
+      --gradient: linear-gradient(135deg, rgba(14, 243, 255, 0.18), rgba(24, 196, 124, 0.18));
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 20%, rgba(14, 243, 255, 0.08), transparent 25%),
+                  radial-gradient(circle at 80% 0%, rgba(24, 196, 124, 0.07), transparent 20%),
+                  linear-gradient(180deg, #0a0f14 0%, #05080c 100%);
+      color: var(--text);
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(10, 15, 20, 0.9);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(14, 243, 255, 0.2);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .logo .spark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, #0ef3ff, #0b86ff);
+      box-shadow: var(--glow), inset 0 0 25px rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo .spark::after {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      filter: blur(1px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(14, 243, 255, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(14, 243, 255, 0.3);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      align-items: center;
+      gap: 40px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(14, 243, 255, 0.12), transparent 35%),
+                  radial-gradient(circle at 80% 0%, rgba(24, 196, 124, 0.14), transparent 25%);
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(14, 243, 255, 0.08);
+      color: var(--accent);
+      font-weight: 600;
+      box-shadow: inset 0 0 0 1px rgba(14, 243, 255, 0.24);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+      max-width: 620px;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border: 1px solid rgba(14, 243, 255, 0.14);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+      font-weight: 600;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0ef3ff, #0b86ff);
+      color: #041018;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      box-shadow: 0 10px 30px rgba(14, 243, 255, 0.25), 0 0 0 1px rgba(14, 243, 255, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta:hover { transform: translateY(-2px) scale(1.01); box-shadow: 0 16px 40px rgba(14, 243, 255, 0.35), var(--glow); }
+
+    .cta:active { transform: translateY(0); }
+
+    .hero-visual {
+      position: relative;
+      padding: 32px;
+      border-radius: 24px;
+      background: var(--card);
+      box-shadow: var(--shadow), var(--glow);
+      border: 1px solid rgba(14, 243, 255, 0.16);
+      overflow: hidden;
+      min-height: 360px;
+      isolation: isolate;
+    }
+
+    .hero-visual::before, .hero-visual::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.45;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    .hero-visual::before { width: 220px; height: 220px; background: rgba(14, 243, 255, 0.35); top: -60px; right: -40px; }
+    .hero-visual::after { width: 260px; height: 260px; background: rgba(24, 196, 124, 0.35); bottom: -80px; left: -40px; animation-delay: -3s; }
+
+    .floating-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini-card {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(14, 243, 255, 0.18);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(14, 243, 255, 0.08), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mini-card:hover::after { opacity: 1; }
+
+    .section-title {
+      margin-bottom: 16px;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 38px;
+      max-width: 720px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid rgba(14, 243, 255, 0.16);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover { transform: translateY(-4px); border-color: rgba(14, 243, 255, 0.35); box-shadow: var(--shadow), var(--glow); }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::after { opacity: 1; }
+
+    .card-content { position: relative; z-index: 1; }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(14, 243, 255, 0.22), rgba(24, 196, 124, 0.22));
+      border: 1px solid rgba(14, 243, 255, 0.3);
+      display: grid;
+      place-items: center;
+      color: #0a1624;
+      font-weight: 900;
+      box-shadow: var(--glow);
+      margin-bottom: 14px;
+    }
+
+    .list {
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .pill-tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(14, 243, 255, 0.1);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.3px;
+      margin-bottom: 10px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid rgba(14, 243, 255, 0.16);
+      min-height: 180px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      box-shadow: var(--shadow);
+    }
+
+    .portfolio-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(14, 243, 255, 0.12), rgba(24, 196, 124, 0.12));
+    }
+
+    .portfolio-item span { position: relative; z-index: 1; }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .testimonial {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(14, 243, 255, 0.16);
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial strong { display: block; margin-bottom: 6px; color: var(--text); }
+    .testimonial small { color: var(--accent-2); font-weight: 700; }
+    .testimonial p { color: var(--muted); line-height: 1.6; margin-top: 10px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .contact-card {
+      background: var(--card);
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(14, 243, 255, 0.16);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    .contact-card:hover { transform: translateY(-3px); border-color: rgba(14, 243, 255, 0.35); box-shadow: var(--glow); }
+
+    footer {
+      padding: 40px 24px 60px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid rgba(14, 243, 255, 0.14);
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-12px) scale(1.02); }
+    }
+
+    @media (max-width: 720px) {
+      .nav { padding: 14px 18px; }
+      .nav-links { gap: 12px; }
+      .hero { padding-top: 20px; }
+      .container { padding: 60px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="spark"></div>
+        <span>ABIKS</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#por-que">Por que ABIKS</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero" id="topo">
+      <div class="hero-content reveal">
+        <div class="badge">ABIKS – Automação • Manutenção • Engenharia • Casa Inteligente • Gestão de Ativos</div>
+        <h1>Tecnologia, eficiência e confiabilidade para sua indústria e sua casa.</h1>
+        <p class="subtitle">Soluções de alta performance em automação, manutenção, engenharia e gestão de ativos para impulsionar resultados com segurança e inovação.</p>
+        <div class="pill-list">
+          <span class="pill">Soluções completas</span>
+          <span class="pill">Equipe especializada</span>
+          <span class="pill">Atendimento rápido e personalizado</span>
+        </div>
+        <a class="cta" href="#contato">Solicite um orçamento →</a>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="floating-cards">
+          <div class="mini-card">
+            <div class="pill-tag">Automação</div>
+            <strong>Painéis, CLP, IHM</strong>
+            <p class="list">Integração inteligente com sensores e supervisórios.</p>
+          </div>
+          <div class="mini-card">
+            <div class="pill-tag">Manutenção</div>
+            <strong>Corretiva, preventiva e preditiva</strong>
+            <p class="list">Análises, usinagem de precisão e confiabilidade.</p>
+          </div>
+          <div class="mini-card">
+            <div class="pill-tag">Casa Inteligente</div>
+            <strong>Controle total</strong>
+            <p class="list">Automação residencial, segurança e conforto.</p>
+          </div>
+          <div class="mini-card">
+            <div class="pill-tag">Gestão de Ativos</div>
+            <strong>Disponibilidade máxima</strong>
+            <p class="list">Planejamento estratégico e monitoramento contínuo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="sobre">
+      <h2 class="section-title reveal">Sobre nós</h2>
+      <p class="section-subtitle reveal">Somos especialistas em automação, manutenção industrial, engenharia e soluções inteligentes que conectam desempenho, segurança e inovação.</p>
+      <div class="grid">
+        <div class="card reveal"><div class="card-content"><div class="icon">Q</div><h3>Quem Somos</h3><p class="list">Equipe multidisciplinar com experiência em ambientes industriais e residenciais, entregando projetos de alta confiabilidade.</p></div></div>
+        <div class="card reveal"><div class="card-content"><div class="icon">M</div><h3>Missão</h3><p class="list">Fornecer soluções tecnológicas que elevem a produtividade, a segurança e a sustentabilidade de nossos clientes.</p></div></div>
+        <div class="card reveal"><div class="card-content"><div class="icon">V</div><h3>Visão</h3><p class="list">Ser referência em automação, manutenção e casa inteligente, com entregas ágeis e resultados mensuráveis.</p></div></div>
+        <div class="card reveal"><div class="card-content"><div class="icon">❤</div><h3>Valores</h3><p class="list">Ética, inovação contínua, excelência técnica, transparência e foco total no cliente.</p></div></div>
+      </div>
+    </section>
+
+    <section class="container" id="servicos">
+      <h2 class="section-title reveal">Serviços</h2>
+      <p class="section-subtitle reveal">Integramos tecnologia e engenharia para garantir confiabilidade, eficiência energética e máxima disponibilidade operacional.</p>
+      <div class="grid">
+        <div class="card reveal"><div class="card-content"><div class="icon">🔧</div><h3>Manutenção Industrial</h3><p class="list">Corretiva, preventiva e preditiva, usinagem e análises para assegurar performance e reduzir paradas.</p></div></div>
+        <div class="card reveal"><div class="card-content"><div class="icon">⚙️</div><h3>Automação Industrial</h3><p class="list">Painéis, CLP, IHM, sensores e integração completa para processos inteligentes.</p></div></div>
+        <div class="card reveal"><div class="card-content"><div class="icon">🏠</div><h3>Casa Inteligente</h3><p class="list">Automação residencial com controle total, segurança e conforto em cada ambiente.</p></div></div>
+        <div class="card reveal"><div class="card-content"><div class="icon">🧭</div><h3>Engenharia e Projetos</h3><p class="list">Projetos sob medida, estudos de viabilidade, comissionamento e otimização de processos.</p></div></div>
+        <div class="card reveal"><div class="card-content"><div class="icon">📈</div><h3>Gestão de Ativos Industriais</h3><p class="list">Estratégias de confiabilidade, monitoramento e gestão de ciclo de vida para máxima produtividade.</p></div></div>
+      </div>
+    </section>
+
+    <section class="container" id="por-que">
+      <h2 class="section-title reveal">Por que escolher a ABIKS</h2>
+      <p class="section-subtitle reveal">Combinação perfeita de engenharia, automação e atendimento próximo para entregar resultados rápidos e consistentes.</p>
+      <div class="columns">
+        <div class="card reveal"><div class="card-content"><div class="icon">⚡</div><h3>Resposta ágil</h3><p class="list">Atendimento rápido e personalizado para minimizar downtime.</p></div></div>
+        <div class="card reveal"><div class="card-content"><div class="icon">🛡️</div><h3>Confiabilidade</h3><p class="list">Processos seguros, rastreáveis e alinhados às melhores práticas.</p></div></div>
+        <div class="card reveal"><div class="card-content"><div class="icon">🔭</div><h3>Visão estratégica</h3><p class="list">Planejamento de longo prazo com indicadores de performance claros.</p></div></div>
+      </div>
+    </section>
+
+    <section class="container" id="portfolio">
+      <h2 class="section-title reveal">Portfólio</h2>
+      <p class="section-subtitle reveal">Projetos executados com precisão e inteligência. Imagens representadas por placeholders.</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-item reveal"><span>Projeto Industrial</span></div>
+        <div class="portfolio-item reveal"><span>Automação Residencial</span></div>
+        <div class="portfolio-item reveal"><span>Gestão de Ativos</span></div>
+        <div class="portfolio-item reveal"><span>Integração CLP/IHM</span></div>
+        <div class="portfolio-item reveal"><span>Modernização de Painéis</span></div>
+        <div class="portfolio-item reveal"><span>Monitoramento Preditivo</span></div>
+      </div>
+    </section>
+
+    <section class="container" id="depoimentos">
+      <h2 class="section-title reveal">Depoimentos</h2>
+      <p class="section-subtitle reveal">Clientes que confiam na ABIKS para manter operações estáveis e residências inteligentes.</p>
+      <div class="testimonials">
+        <div class="testimonial reveal"><strong>Fernanda Costa</strong><small>Gerente Industrial</small><p>"Equipe extremamente competente. Reduzimos paradas e ganhamos previsibilidade com as manutenções preditivas."</p></div>
+        <div class="testimonial reveal"><strong>Ricardo Lima</strong><small>Coordenador de Automação</small><p>"Integração de CLP e IHM impecável. Suporte rápido e documentação completa."</p></div>
+        <div class="testimonial reveal"><strong>Juliana Souza</strong><small>Residencial Inteligente</small><p>"Automatizamos toda a casa com segurança e conforto. Atendimento personalizado e resultados acima do esperado."</p></div>
+      </div>
+    </section>
+
+    <section class="container" id="contato">
+      <h2 class="section-title reveal">Contato</h2>
+      <p class="section-subtitle reveal">Fale com especialistas em automação, manutenção e casa inteligente.</p>
+      <div class="contact-grid">
+        <div class="contact-card reveal"><div class="icon">💬</div><div><strong>WhatsApp</strong><p class="list">+55 (00) 00000-0000</p></div></div>
+        <div class="contact-card reveal"><div class="icon">✉️</div><div><strong>E-mail</strong><p class="list">contato@abiks.com</p></div></div>
+        <div class="contact-card reveal"><div class="icon">📍</div><div><strong>Localização</strong><p class="list">Atendimento em todo o Brasil</p></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2024 ABIKS • Automação, Manutenção, Engenharia & Casa Inteligente
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
