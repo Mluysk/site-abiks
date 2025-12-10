@@ -68,20 +68,18 @@ header.scrolled {
   letter-spacing: 1px;
 }
 
-.logo-mark {
-  width: 160px;
-  height: 64px;
+.logo-img {
+  width: 158px;
+  height: auto;
   display: block;
   filter: drop-shadow(0 10px 26px rgba(209, 60, 60, 0.22));
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-.logo-mark rect,
-.logo-mark path {
-  transition: filter 0.3s ease, opacity 0.3s ease;
+.logo:hover .logo-img {
+  filter: drop-shadow(0 0 18px rgba(255, 107, 107, 0.38));
+  transform: translateY(-1px);
 }
-
-.logo:hover .logo-mark rect { opacity: 0.22; }
-.logo:hover .logo-mark path { filter: drop-shadow(0 0 18px rgba(255, 107, 107, 0.35)); }
 
 .logo-text small {
   color: var(--muted);
