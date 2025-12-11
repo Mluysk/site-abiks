@@ -517,16 +517,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #f8f3f1;
-}
-
-.footer-since {
-  font-size: 0.85rem;
-  opacity: 0.88;
+  gap: 0;
 }
 
 .footer-logo {
