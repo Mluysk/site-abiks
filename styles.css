@@ -151,9 +151,9 @@ header.scrolled {
   padding: 80px 24px;
 }
 
-/* Trim the top offset on the first fold to reduce the gap under the sticky header */
+/* Offset hero content from the sticky header on desktop */
 .hero.container {
-  padding-top: 12px;
+  padding-top: 99px;
 }
 
 .hero {
