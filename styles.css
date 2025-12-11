@@ -502,21 +502,45 @@ header.scrolled {
 }
 
 footer {
-  padding: 26px 18px 30px;
+  padding: 28px 18px 34px;
   text-align: center;
-  color: #f3e7e7;
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
-  background: radial-gradient(circle at 20% 30%, rgba(209, 60, 60, 0.14), transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(255, 140, 140, 0.12), transparent 42%),
-    linear-gradient(180deg, rgba(10, 6, 8, 0.96), rgba(12, 8, 10, 0.98));
+  color: #f5eeed;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: radial-gradient(circle at 35% 20%, rgba(255, 255, 255, 0.07), transparent 40%),
+    linear-gradient(180deg, #3e0c12 0%, #1a0a0c 70%, #12070a 100%);
   display: grid;
-  gap: 8px;
+  gap: 10px;
+  letter-spacing: 0.01em;
 }
 
-.footer-line { font-weight: 700; letter-spacing: 0.01em; }
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #f8f3f1;
+}
+
+.footer-since {
+  font-size: 0.85rem;
+  opacity: 0.88;
+}
+
+.footer-logo {
+  width: 120px;
+  filter: brightness(0) invert(1) saturate(0) contrast(110%) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.35));
+}
+
+.footer-line {
+  font-weight: 700;
+  letter-spacing: 0.015em;
+}
 
 .footer-credit {
-  color: #d8c7c7;
+  color: #e6d7d5;
   font-weight: 600;
 }
 
