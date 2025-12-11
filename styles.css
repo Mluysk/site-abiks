@@ -546,17 +546,16 @@ footer {
 }
 
 .footer-line {
-  font-family: "Georgia", "Times New Roman", "Palatino Linotype", serif;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   font-size: 1.02rem;
 }
 
 .footer-credit {
   color: #e6d7d5;
-  font-family: "Georgia", "Times New Roman", "Palatino Linotype", serif;
-  font-style: italic;
-  font-weight: 600;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-weight: 400;
   font-size: 0.94rem;
 }
 
