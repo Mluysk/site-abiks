@@ -318,10 +318,14 @@ header.scrolled {
 .cta:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 16px 40px rgba(209, 60, 60, 0.45); }
 
 .cta-icon {
-  width: 20px;
-  height: 20px;
-  fill: #1a0d0d;
-  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.25));
+  width: 30px;
+  height: 30px;
+  stroke: #1a0d0d;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.3));
   transition: transform 0.25s ease;
 }
 
