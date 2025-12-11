@@ -153,7 +153,7 @@ header.scrolled {
 
 /* Trim the top offset on the first fold to reduce the gap under the sticky header */
 .hero.container {
-  padding-top: 32px;
+  padding-top: 12px;
 }
 
 .hero {
