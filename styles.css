@@ -330,10 +330,10 @@ header.scrolled {
 }
 
 .ghost-btn:hover {
-  color: #fff;
-  background: linear-gradient(135deg, #ffffff, #ffe5e5);
-  border-color: rgba(209, 60, 60, 0.75);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+  color: var(--accent-2);
+  background: linear-gradient(135deg, #fff6f6, #ffe9e9);
+  border-color: rgba(209, 60, 60, 0.8);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4), 0 0 14px rgba(209, 60, 60, 0.24);
 }
 
 .section-title {
